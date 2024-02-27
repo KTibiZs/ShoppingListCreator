@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:shoppinglist
+    username: sa
+    password:
+    diver-class-name: org.h2.Driver
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
+  jpa:
+    show-sql: true

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymelead.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping List</title>
+</head>
+<body>
+<h1>Shopping List Creator</h1>
+<h2>Add item to the list of <span th:text="${#strings.toUpperCase(shop.name)}">Aldi</span></h2>
+<form action="#" th:action="@{/add_item}" th:object="${item}" method="POST">
+    <label>Name:</label><br/>
+    <input type="text" th:field="*{name}"><br/>
+    <label>Quantity:</label><br/>
+    <input type="text" th:field="*{quantity}"><br/>
+    <label>Quantity unit:</label><br/>
+    <input type="text" th:field="*{qtyUnit}"><br/>
+    <input type="submit" value="OK"><br/>
+</form>
+<h2>Shopping list</h2>
+<table>
+    <thead>
+        <tr>
+            <th>No<br>&nbsp;</th>
+            <th>Item name<br>&nbsp;</th>
+            <th>Quantity<br>&nbsp;</th>
+            <th>Qty<br>unit</th>
+            <th>Remove<br>&nbsp;</th>
+            <th>Modify<br>&nbsp;</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="item,stat : ${shop.items}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="${item.name}"></td>
+            <td th:text="${item.quantity}"></td>
+            <td th:text="${item.qtyUnit}"></td>
+            <td><a th:href="@{/remove_item(id=${item.id})}">Remove</a></td>
+            <td><a th:href="@{/modify_item(id=${item.id})}">Modify</a></td>
+        </tr>
+    </tbody>
+</table>
+<br/>
+<a th:href="@{/}">Back to main page</a>
+
+</body>
+</html>

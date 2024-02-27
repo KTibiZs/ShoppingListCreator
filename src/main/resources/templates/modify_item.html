@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping List Creator</title>
+</head>
+<body>
+<h1>Shopping List Creator</h1>
+<h1>Item to be modify</h1>
+<form action="#" th:action="@{/modify}" th:object="${item}" th:method="POST">
+    <input type="hidden" for="id" th:field="*{id}">
+    <label>Name:</label><br/>
+    <input type="text" th:field="*{name}"><br/>
+    <label>Quantity:</label><br/>
+    <input type="text" th:field="*{quantity}"><br/>
+    <label>Quantity unit:</label><br/>
+    <input type="text" th:field="*{qtyUnit}"><br/>
+    <input type="submit" value="Modify">
+</form>
+</body>
+</html>

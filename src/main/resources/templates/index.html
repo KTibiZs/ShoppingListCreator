@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Shopping List Creator</title>
+</head>
+<body>
+<h1>Shopping List Creator</h1>
+<h2>Add a new shop</h2>
+<form action="#" th:action="@{/new_shop}" th:object="${shop}" method="GET">
+    <label>Name:</label><br/>
+    <input type="text" th:field="*{name}"><br/>
+    <input type="submit" value="Add"><br/>
+</form>
+<div th:if="${not #lists.isEmpty(shops)}">
+<h2>Load a shop from the list below</h2>
+<table>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>Shop name</th>
+            <th>Load</th>
+            <th>Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="shop,stat : ${shops}">
+            <td th:text="${stat.count}"></td>
+            <td th:text="${shop.name}"></td>
+            <td><a th:href="@{/load_shop(name=${shop.name})}">Load</a></td>
+            <td><a th:href="@{/remove_shop(id=${shop.id})}">Remove</a></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>
